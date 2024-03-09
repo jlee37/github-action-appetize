@@ -42,6 +42,8 @@ export const uploadBuild = async (): Promise<OutputData> => {
   const [data, headers] = dataAndHeaders()
   core.info(`Uploading build to ${url()}`)
   core.info('Attached build info:')
+  const scrubbedInputs = {...inputs}
+  scrubbedInputs.apiToken = "scrubbed"
   core.info(`${JSON.stringify(inputs)}`)
   const response = await axios.post(url(), data, {
     auth: {
