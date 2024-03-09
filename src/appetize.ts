@@ -41,10 +41,10 @@ export const uploadBuild = async (): Promise<OutputData> => {
   validateInputData(inputs)
   const [data, headers] = dataAndHeaders()
   core.info(`Uploading build to ${url()}`)
-  core.info('Attached build info:')
+  core.info('Attached scrubbed build info:')
   const scrubbedInputs = {...inputs}
   scrubbedInputs.apiToken = "scrubbed"
-  core.info(`${JSON.stringify(inputs)}`)
+  core.info(`${JSON.stringify(scrubbedInputs)}`)
   const response = await axios.post(url(), data, {
     auth: {
       username: inputs.apiToken,
